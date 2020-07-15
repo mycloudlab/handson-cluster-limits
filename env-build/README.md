@@ -31,4 +31,41 @@ do
 done
 ```
 
+# Lab java
+jdk < 8:191
+
+java -XshowSettings:vm -version
+
+jdk 8:191 >
+
+java -XX:MaxRAM=400m -Xmx300m -XX:MaxRAMFraction=1 -XshowSettings:vm -version
+
+java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1 -XshowSettings:vm -version
+
+java -XX:MaxRAMFraction=2 -XshowSettings:vm -version
+
++----------------+-------------------+
+| MaxRAMFraction | % of RAM for heap |
+|----------------+-------------------|
+|              1 |              100% |
+|              2 |               50% |
+|              3 |               33% |
+|              4 |               25% |
++----------------+-------------------+
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MemEat {
+    public static void main(String[] args) {
+        List l = new ArrayList<>();
+        while (true) {
+            byte b[] = new byte[1048576];
+            l.add(b);
+            Runtime rt = Runtime.getRuntime();
+            System.out.println( "free memory: " + rt.freeMemory() );
+        }
+    }
+}
 

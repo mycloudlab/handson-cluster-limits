@@ -1,0 +1,43 @@
+kind: Project
+apiVersion: project.openshift.io/v1
+metadata:
+  name: java
+  
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  namespace: java
+  name: java-example
+spec:
+  containers:
+  - name: java-8
+    image: openjdk:8u121
+    imagePullPolicy: Always
+    resources:
+      limits:
+        memory: 200Mi
+      request:
+        memory: 40Mi
+    command: ["sleep"]
+    args: ["infinity"]
+  - name: java-8
+    image: openjdk:8
+    imagePullPolicy: Always
+    resources:
+      limits:
+        memory: 400Mi
+      request:
+        memory: 40Mi
+    command: ["sleep"]
+    args: ["infinity"]
+  - name: java-10
+    image: openjdk:10
+    imagePullPolicy: Always
+    resources:
+      limits:
+        memory: 400Mi
+      request:
+        memory: 40Mi
+    command: ["sleep"]
+    args: ["infinity"]    

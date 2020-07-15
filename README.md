@@ -1,11 +1,17 @@
+# Exercícios do handson de gerenciamento de limites do cluster
+
+Antes de qualquer exercício faça o login no cluster no terminal para execução dos comandos OC.
+
 
 # 1.1 Definindo um pod com limites
+
+Crie o pod abaixo:
 
 ```yaml
 apiVersion: v1
 kind: Pod
 metadata:
-  name: memory-demo-seunome
+  name: memory-demo-seu-usuario
 spec:
   containers:
   - name: memory-demo-ctr
@@ -16,16 +22,20 @@ spec:
       requests:
         memory: "100Mi"
     command: ["stress"]
-    args: ["--vm", "1", "--vm-bytes", "150Mi", "--vm-hang", "1"]
+    args: ["--vm", "1", "--vm-bytes", "150M", "--vm-hang", "1"]
 ```
 
+
+
 # 1.2 Definindo um pod com mais memoria do que o limite 
+
+Crie o pod abaixo:
 
 ```yaml
 apiVersion: v1
 kind: Pod
 metadata:
-  name: memory-demo-seunome
+  name: memory-demo-seu-usuario
 spec:
   containers:
   - name: memory-demo-ctr
@@ -36,7 +46,7 @@ spec:
       requests:
         memory: "100Mi"
     command: ["stress"]
-    args: ["--vm", "1", "--vm-bytes", "200Mi", "--vm-hang", "1"]
+    args: ["--vm", "1", "--vm-bytes", "200M", "--vm-hang", "1"]
 ```
 
 
@@ -46,7 +56,7 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: memory-demo-seunome
+  name: memory-demo-seu-usuario
 spec:
   containers:
   - name: memory-demo-ctr
@@ -72,7 +82,7 @@ A saida deve ser algo como abaixo:
 
 ```bash
 NAME                  CPU(cores)   MEMORY(bytes)   
-memory-demo-seunome   1000m        2Mi      
+memory-demo-seu-usuario   1000m        2Mi      
 ```
 
 # 2.1 definindo um limit range
