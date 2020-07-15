@@ -1,0 +1,18 @@
+kind: Project
+apiVersion: project.openshift.io/v1
+metadata:
+  name: HANDSON
+  
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  namespace: HANDSON
+  name: HANDSON-openshift-cli
+spec:
+  containers:
+  - name: openshift-cli
+    image: image-registry.openshift-image-registry.svc:5000/openshift/handson
+    workingDir: /handson
+    command: ["sleep"]
+    args: ["infinity"]
